@@ -1,0 +1,7 @@
+<html>
+    <body>
+        {% for image in images %}
+            <img src = "{{ url_for('static', filename = image) }}" width = "200" height = "200">
+        {% endfor %}
+    </body>
+</html>
