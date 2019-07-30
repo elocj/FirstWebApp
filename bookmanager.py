@@ -25,33 +25,42 @@ from flask_sqlalchemy import SQLAlchemy
 # POSTGRES_PW="dbpw"
 # POSTGRES_DB="test"
 
-# project_dir = os.path.dirname(os.path.abspath(__file__))
-# database_file = "sqlite:///{}".format(os.path.join(project_dir, "bookdatabase.db"))
+project_dir = os.path.dirname(os.path.abspath(__file__))
+database_file = "sqlite:///{}".format(os.path.join(project_dir, "bookdatabase.db"))
 
-database_file = 'postgresql+psycopg2://login:pass@localhost/flask_app'
+# username = os.environ["username"]
+# password = os.environ["password"]
+# print(username)
+# print(password)
+# database_file = 'postgresql+psycopg2://anthonyjoo:vhi4e7rp@localhost/flask_app'
+
+
 
 #
 # from sqlalchemy import create_engine
 #
 # engine = create_engine(database_file)
 app = Flask(__name__)
+# print(__name__, 'hfkdsf')
 app.config["SQLALCHEMY_DATABASE_URI"] = database_file
 app.config["SQLALCHEMY_TRACK_MODIFICATION"] = False
+
 
 db = SQLAlchemy(app)
 
 class People(db.Model):
     name = db.Column(db.String(80), unique = True, nullable = False, primary_key = True)
-    val = db.Column(db.String(80), unique = False, nullable = True, primary_key = False)
+    rate = db.Column(db.String(80), unique = False, nullable = True, primary_key = False)
     # num = db.Column(postgresql.ARRAY(db.Integer), unique = False, nullable = True, primary_key = False)
 
     def __repr__(self):
         return "<Title: {}>".format(self.title)
 
 
-# hoe as mother eduf
 # db.create_all()
 # db.session.commit()
+
+# hoe as mother eduf
 
 # @app.route("/update", methods=["POST"])
 # def update():
@@ -83,7 +92,7 @@ def portfolio():
 def home():
     if request.form:
         try:
-            people = People(name=request.form.get("name"), val = request.form.get("val"), num = [1, 2, 3])
+            people = People(name=request.form.get("name"), val = request.form.get("val"))
             db.session.add(people)
             db.session.commit()
         except Exception as e:
