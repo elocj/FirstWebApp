@@ -48,6 +48,8 @@ class People(db.Model):
     def __repr__(self):
         return "<Title: {}>".format(self.title)
 
+
+# hoe as mother eduf
 # db.create_all()
 # db.session.commit()
 
