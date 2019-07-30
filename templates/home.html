@@ -13,7 +13,10 @@
             {% for person in peoples %}
                 <h1>{{person.name}}</h1>
                 <p>{{person.val}}</p>
-                <!--<p>{{person.num}}</p>-->
+                <form method="POST" action="./delete" style="display: inline">
+                    <input type="hidden" value="{{person.name}}" name="name">
+                    <input type="submit" value="Delete">
+                </form>
             {% endfor %}
     </body>
 </html>

@@ -2,11 +2,14 @@
     <body>
         {% for image in images %}
             <img src = "{{ url_for('static', filename = image) }}" width = "200" height = "200">
-            <form method="POST" action="./portfolio" style="display: inline">
+            <form method="POST" action="./portfolio/update" style="display: inline">
               <input type="text" name="name">
               <input type="text" name="num">
               <input type="submit" value="Update">
             </form>
         {% endfor %}
+        <form method = "GET" action = "/">
+            <button type = "submit">home</button>
+        </form>
     </body>
 </html>

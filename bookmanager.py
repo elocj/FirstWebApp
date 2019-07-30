@@ -4,42 +4,14 @@ from flask import Flask
 from flask import render_template
 from flask import request
 from flask import redirect
-# from sqlalchemy.dialects import postgresql
 
 from flask_sqlalchemy import SQLAlchemy
 
-# def get_env_variable(name):
-#     try:
-#         return os.environ[name]
-#     except KeyError:
-#         message = "Expected environment variable '{}' not set.".format(name)
-#         raise Exception(message)
-#
-# POSTGRES_URL = get_env_variable("POSTGRES_URL")
-# POSTGRES_USER = get_env_variable("POSTGRES_USER")
-# POSTGRES_PW = get_env_variable("POSTGRES_PW")
-# POSTGRES_DB = get_env_variable("POSTGRES_DB")
-
-# POSTGRES_URL="127.0.0.1:5000"
-# POSTGRES_USER="postgres"
-# POSTGRES_PW="dbpw"
-# POSTGRES_DB="test"
 
 project_dir = os.path.dirname(os.path.abspath(__file__))
 database_file = "sqlite:///{}".format(os.path.join(project_dir, "bookdatabase.db"))
 
-# username = os.environ["username"]
-# password = os.environ["password"]
-# print(username)
-# print(password)
-# database_file = 'postgresql+psycopg2://anthonyjoo:vhi4e7rp@localhost/flask_app'
-
-#
-# from sqlalchemy import create_engine
-#
-# engine = create_engine(database_file)
 app = Flask(__name__)
-# print(__name__, 'hfkdsf')
 app.config["SQLALCHEMY_DATABASE_URI"] = database_file
 app.config["SQLALCHEMY_TRACK_MODIFICATION"] = False
 
@@ -49,16 +21,9 @@ db = SQLAlchemy(app)
 class People(db.Model):
     name = db.Column(db.String(80), unique = True, nullable = False, primary_key = True)
     val = db.Column(db.String(80), unique = False, nullable = True, primary_key = False)
-    # num = db.Column(postgresql.ARRAY(db.Integer), unique = False, nullable = True, primary_key = False)
 
     def __repr__(self):
         return "<Title: {}>".format(self.title)
-
-
-# db.create_all()
-# db.session.commit()
-
-# hoe as mother eduf
 
 # @app.route("/update", methods=["POST"])
 # def update():
@@ -81,15 +46,30 @@ class People(db.Model):
 #     db.session.commit()
 #     return redirect("/")
 
-@app.route('/portfolio')
-def portfolio():
-    images = os.listdir('static')
+@app.route("/portfolio/update", methods=["POST", "GET"])
+def update(): # you can pass name input and getname button from home page
     name = request.form.get("name")
     num = request.form.get("num")
     person = People.query.filter_by(name=name).first()
-    # person.val = person.val.append(num)
+    # db.session.delete(person)
+    person.val = person.val + num
     db.session.commit()
+    return redirect("/portfolio")
+
+@app.route('/portfolio', methods=["POST", "GET"])
+def portfolio():
+    images = os.listdir('static')
     return render_template("prog.html", images=images)
+
+@app.route("/delete", methods=["POST", "GET"])
+def delete():
+    name = request.form.get("name")
+    # num = request.form.get("num")
+    person = People.query.filter_by(name=name).first()
+    db.session.delete(person)
+    # person.val = person.val + num
+    db.session.commit()
+    return redirect("/")
 
 @app.route("/", methods = ["GET", "POST"])
 def home():
@@ -101,7 +81,6 @@ def home():
         except Exception as e:
             print("Failed to add book")
             print(e)
-    images = os.listdir('static')
     peoples = People.query.all()
     return render_template("home.html", peoples=peoples)
 
