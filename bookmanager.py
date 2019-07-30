@@ -20,7 +20,7 @@ db = SQLAlchemy(app)
 
 class People(db.Model):
     name = db.Column(db.String(80), unique = True, nullable = False, primary_key = True)
-    val = db.Column(db.String(80), unique = False, nullable = True, primary_key = False)
+    val = db.Column(db.String(80), unique = False, nullable = False, primary_key = False)
 
     def __repr__(self):
         return "<Title: {}>".format(self.title)
@@ -48,18 +48,23 @@ class People(db.Model):
 
 @app.route("/portfolio/update", methods=["POST", "GET"])
 def update(): # you can pass name input and getname button from home page
-    name = request.form.get("name")
+    # name = request.form.get("nam")
     num = request.form.get("num")
-    person = People.query.filter_by(name=name).first()
+    # person = People.query.filter_by(name=name).first()
     # db.session.delete(person)
-    person.val = person.val + num
+    text = num
+    # person.val = num
     db.session.commit()
     return redirect("/portfolio")
 
 @app.route('/portfolio', methods=["POST", "GET"])
 def portfolio():
     images = os.listdir('static')
-    return render_template("prog.html", images=images)
+    name = request.form.get("nam")
+    person = People.query.filter_by(name=name).first()
+    person.val = person.val + "jjjeje"
+    db.session.commit()
+    return render_template("prog.html", images=images, person=person, name=name)
 
 @app.route("/delete", methods=["POST", "GET"])
 def delete():
