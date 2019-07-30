@@ -48,8 +48,8 @@ class People(db.Model):
     def __repr__(self):
         return "<Title: {}>".format(self.title)
 
-db.create_all()
-db.session.commit()
+# db.create_all()
+# db.session.commit()
 
 # @app.route("/update", methods=["POST"])
 # def update():
