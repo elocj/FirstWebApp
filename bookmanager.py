@@ -4,7 +4,7 @@ from flask import Flask
 from flask import render_template
 from flask import request
 from flask import redirect
-from sqlalchemy.dialects import postgresql
+# from sqlalchemy.dialects import postgresql
 
 from flask_sqlalchemy import SQLAlchemy
 
@@ -34,8 +34,6 @@ database_file = "sqlite:///{}".format(os.path.join(project_dir, "bookdatabase.db
 # print(password)
 # database_file = 'postgresql+psycopg2://anthonyjoo:vhi4e7rp@localhost/flask_app'
 
-
-
 #
 # from sqlalchemy import create_engine
 #
@@ -50,7 +48,7 @@ db = SQLAlchemy(app)
 
 class People(db.Model):
     name = db.Column(db.String(80), unique = True, nullable = False, primary_key = True)
-    rate = db.Column(db.String(80), unique = False, nullable = True, primary_key = False)
+    val = db.Column(db.String(80), unique = False, nullable = True, primary_key = False)
     # num = db.Column(postgresql.ARRAY(db.Integer), unique = False, nullable = True, primary_key = False)
 
     def __repr__(self):
@@ -86,6 +84,11 @@ class People(db.Model):
 @app.route('/portfolio')
 def portfolio():
     images = os.listdir('static')
+    name = request.form.get("name")
+    num = request.form.get("num")
+    person = People.query.filter_by(name=name).first()
+    # person.val = person.val.append(num)
+    db.session.commit()
     return render_template("prog.html", images=images)
 
 @app.route("/", methods = ["GET", "POST"])
