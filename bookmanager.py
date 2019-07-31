@@ -22,8 +22,8 @@ class People(db.Model):
     name = db.Column(db.String(80), unique = True, nullable = False, primary_key = True)
     val = db.Column(db.String(80), unique = False, nullable = False, primary_key = False)
 
-    def __repr__(self):
-        return "<Title: {}>".format(self.title)
+    # def __repr__(self):
+    #     return "<Title: {}>".format(self.name)
 
 # @app.route("/update", methods=["POST"])
 # def update():
@@ -48,23 +48,35 @@ class People(db.Model):
 
 @app.route("/portfolio/update", methods=["POST", "GET"])
 def update(): # you can pass name input and getname button from home page
-    # name = request.form.get("nam")
-    num = request.form.get("num")
-    # person = People.query.filter_by(name=name).first()
-    # db.session.delete(person)
-    text = num
-    # person.val = num
-    db.session.commit()
+    if request.form:
+        try:
+            name = request.form.get("name")
+            name = name
+            num = request.values.get("num")
+            num = str(num)
+            # person = People.query.filter_by(name=name).first()
+            # db.session.delete(person) this shows that the person object of "anthony" is found
+            # person.val = num
+            person = get_peep(name)
+            person.val = person.val + str(num)
+            # person.name = person.name + "adsa"
+            # it works but the only issue is that we cant take form input
+            db.session.commit()
+        except Exception as e:
+            print("cant", e)
     return redirect("/portfolio")
+
+def get_peep(name):
+    return People.query.filter_by(name=name).first()
 
 @app.route('/portfolio', methods=["POST", "GET"])
 def portfolio():
     images = os.listdir('static')
-    name = request.form.get("nam")
-    person = People.query.filter_by(name=name).first()
-    person.val = person.val + "jjjeje"
-    db.session.commit()
-    return render_template("prog.html", images=images, person=person, name=name)
+    # name = request.form.get("nam")
+    # person = People.query.filter_by(name=name).first()
+    # person.val = person.val + "jjjeje"
+    # db.session.commit()
+    return render_template("prog.html", images=images)
 
 @app.route("/delete", methods=["POST", "GET"])
 def delete():
