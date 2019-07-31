@@ -1,23 +1,30 @@
 <html>
     <body>
-        <form method = "POST" action = "/">
-            <h1>Make account</h1>
-            <input type = "text" name = "name">
-            <input type = "text" name = "val">
-            <input type = "submit" value = "Add">
-        </form>
-        <form method = "POST" action = "./portfolio/update">
+        <h1>Make account</h1>
+            <form method = "POST" action = "/">
+                <input type = "text" name = "name">
+                <input type = "text" name = "val">
+                <input type = "submit" value = "Add">
+            </form>
+        <h1>Modify account</h1>
+            <form method = "POST" action = "./portfolio/update">
                 <input type = "text" name = "name">
                 <input type = "submit" value = "Continue">
-        </form>
+            </form>
         <h1>Accounts</h1>
             {% for person in peoples %}
-                <h1>{{person.name}}</h1>
-                <p>{{person.val}}</p>
+                <h4 style="display: inline">{{person.name}}</h4>
+                <p style="display: inline">{{person.val}}</p>
                 <form method="POST" action="./delete" style="display: inline">
                     <input type="hidden" value="{{person.name}}" name="name">
                     <input type="submit" value="Delete">
                 </form>
+                <p></p>
             {% endfor %}
+        <h1>Run program</h1>
+            <form method = "POST" action = "./run">
+                <input type = "text" name = "name">
+                <input type = "submit" value = "Submit">
+            </form>
     </body>
 </html>

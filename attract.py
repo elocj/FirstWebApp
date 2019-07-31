@@ -20,7 +20,7 @@ db = SQLAlchemy(app)
 
 class People(db.Model):
     name = db.Column(db.String(80), unique = True, nullable = False, primary_key = True)
-    val = db.Column(db.String(80), unique = False, nullable = False, primary_key = False)
+    val = db.Column(db.String(80), unique = False, nullable = True, primary_key = False)
 
     def __repr__(self):
         return "<Name: {}>".format(self.name)
@@ -60,6 +60,38 @@ def get_peep(name):
 def portfolio():
     images = os.listdir('static')
     return render_template("prog.html", images=images)
+
+
+# run GETs a name and then queries that person and send it in through person=person and
+# in the html it will get person.val and run the program. Results appended to person attr.
+# in the future add a column for the weights and percentage swiped right
+@app.route("/run", methods = ["GET", "POST"])
+def run():
+    # if request.form:
+    #     try:
+    #         people = People(name=request.form.get("name"), val = request.form.get("val"))
+    #         db.session.add(people)
+    #         db.session.commit()
+    #     except Exception as e:
+    #         print("Failed to add book")
+    #         print(e)
+    # peoples = People.query.all()
+    person = None
+    if request.form:
+        try:
+            name = request.form.get("name")
+            person = get_peep(name)
+            num = list(person.val)
+            # num = [person.val]
+            # num = makeArray(person.val)
+            num = list(map(int, num))
+        except Exception as e:
+            print("something wrong")
+            print(e)
+    return render_template("action.html", num=num)
+
+def makeArray(num):
+    return None
 
 @app.route("/delete", methods=["POST", "GET"])
 def delete():
