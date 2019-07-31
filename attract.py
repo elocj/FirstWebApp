@@ -67,33 +67,36 @@ def portfolio():
 # run GETs a name and then queries that person and send it in through person=person and
 # in the html it will get person.val and run the program. Results appended to person attr.
 # in the future add a column for the weights and percentage swiped right
+# action html should have the result details such as percentage and shit
 @app.route("/run", methods = ["GET", "POST"])
 def run():
-    # if request.form:
-    #     try:
-    #         people = People(name=request.form.get("name"), val = request.form.get("val"))
-    #         db.session.add(people)
-    #         db.session.commit()
-    #     except Exception as e:
-    #         print("Failed to add book")
-    #         print(e)
-    # peoples = People.query.all()
     person = None
     if request.form:
         try:
             name = request.form.get("name")
             person = get_peep(name)
             num = list(person.val)
-            # num = [person.val]
-            # num = makeArray(person.val)
             num = list(map(int, num))
+            # pass in person
         except Exception as e:
             print("something wrong")
             print(e)
-    return render_template("action.html", num=num)
+    # run function after passing in person which will update person
+    # dont forget to db.session.commit()
+    # percent = person.perc
+    return render_template("action.html", num=num) # can change this to return redirect
 
-def makeArray(num):
-    return None
+# @app.route("/rate", methods = ["GET", "POST"])
+# def rate():
+#     person = None
+#     if request.form:
+#         try:
+#             name = request.form.get("name")
+#             person = People.query.filter_by(name=name).first()
+#         except Exception as e:
+#             print("something wrong")
+#             print(e)
+#     return render_template("rate.html", person=person) # can change this to return redirect
 
 @app.route("/delete", methods=["POST", "GET"])
 def delete():
@@ -117,4 +120,4 @@ def home():
     return render_template("home.html", peoples=peoples)
 
 if __name__ == "__main__":
-    app.run(debug = True, threaded=True)
+    app.run(debug = True)
