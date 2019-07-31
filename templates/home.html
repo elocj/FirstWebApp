@@ -1,9 +1,17 @@
+<!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="styles.css">
+        <style>
+            div#create {
+                background-image: url('../img/home.jpg');
+                text-align: center;
+                background-size: cover;
+                /*background-color: aquamarine;*/
+            }
+        </style>
     </head>
     <body>
-        <div name = "create">
+        <div id = "create">
             <h1>Make account</h1>
                 <form method = "POST" action = "/">
                     <input type = "text" name = "name">
@@ -12,7 +20,7 @@
                 </form>
         </div>
 
-        <div name = "modify">
+        <div id = "modify">
             <h1>Modify account</h1>
                 <form method = "POST" action = "./portfolio/update">
                     <input type = "text" name = "name">
@@ -20,7 +28,7 @@
                 </form>
         </div>
 
-        <div name = "accounts">
+        <div id = "accounts">
             <h1>Accounts</h1>
                 {% for person in peoples %}
                     <h4 style="display: inline">{{person.name}}</h4>
@@ -33,7 +41,7 @@
                 {% endfor %}
         </div>
 
-        <div name = "run">
+        <div id = "run">
         <h1>Run program</h1>
             <form method = "POST" action = "./run">
                 <input type = "text" name = "name">
@@ -41,12 +49,12 @@
             </form>
         </div>
 
-        <!--<div name = "test">-->
-        <!--<h1>Test face</h1>-->
-            <!--<form method = "POST" action = "./rate">-->
-                <!--<input type = "text" name = "name">-->
-                <!--<input type = "submit" value = "Submit">-->
-            <!--</form>-->
+        <!--<div id = "test">-->
+            <!--<h1>Test face</h1>-->
+                <!--<form method = "POST" action = "./rate">-->
+                    <!--<input type = "text" name = "name">-->
+                    <!--<input type = "submit" value = "Submit">-->
+                <!--</form>-->
         <!--</div>-->
     </body>
 </html>
