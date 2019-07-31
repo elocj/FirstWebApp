@@ -21,6 +21,8 @@ db = SQLAlchemy(app)
 class People(db.Model):
     name = db.Column(db.String(80), unique = True, nullable = False, primary_key = True)
     val = db.Column(db.String(80), unique = False, nullable = True, primary_key = False)
+    weights = db.Column(db.String(80), unique = False, nullable = True, primary_key = False)
+    perc =db.Column(db.String(80), unique = False, nullable = True, primary_key = False)
 
     def __repr__(self):
         return "<Name: {}>".format(self.name)
