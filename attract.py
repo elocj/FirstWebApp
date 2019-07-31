@@ -60,7 +60,7 @@ def get_peep(name):
 
 @app.route('/portfolio', methods=["POST", "GET"])
 def portfolio():
-    images = os.listdir('static')
+    images = os.listdir('static/images')
     return render_template("prog.html", images=images)
 
 
