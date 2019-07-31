@@ -14,7 +14,7 @@ database_file = "sqlite:///{}".format(os.path.join(project_dir, "bookdatabase.db
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = database_file
 app.config["SQLALCHEMY_TRACK_MODIFICATION"] = False
-
+x = "global"
 
 db = SQLAlchemy(app)
 
@@ -22,45 +22,32 @@ class People(db.Model):
     name = db.Column(db.String(80), unique = True, nullable = False, primary_key = True)
     val = db.Column(db.String(80), unique = False, nullable = False, primary_key = False)
 
-    # def __repr__(self):
-    #     return "<Title: {}>".format(self.name)
-
-# @app.route("/update", methods=["POST"])
-# def update():
-#     try:
-#         newtitle = request.form.get("newtitle")
-#         oldtitle = request.form.get("oldtitle")
-#         book = Book.query.filter_by(title=oldtitle).first()
-#         book.title = newtitle
-#         db.session.commit()
-#     except Exception as e:
-#         print("Couldn't update book title")
-#         print(e)
-#     return redirect("/")
-#
-# @app.route("/delete", methods=["POST"])
-# def delete():
-#     title = request.form.get("title")
-#     book = Book.query.filter_by(title=title).first()
-#     db.session.delete(book)
-#     db.session.commit()
-#     return redirect("/")
+    def __repr__(self):
+        return "<Name: {}>".format(self.name)
 
 @app.route("/portfolio/update", methods=["POST", "GET"])
-def update(): # you can pass name input and getname button from home page
+def update():
     if request.form:
         try:
-            name = request.form.get("name")
-            name = name
-            num = request.values.get("num")
+            global x
+            x = request.form.get("name")
+        except Exception as e:
+            print("cant", e)
+    return redirect("/portfolio")
+
+# Final: Big issue was sending multiple requests to one page because it only took the first request
+#        because second request had not been filled in yet
+# Solution: Split into two routes but issue was I need way to send name to second route
+#           so I used global variable (poor style)
+
+@app.route("/portfolio/hoe", methods=["POST", "GET"])
+def hoe():
+    if request.form:
+        try:
+            num = request.form.get("num")
             num = str(num)
-            # person = People.query.filter_by(name=name).first()
-            # db.session.delete(person) this shows that the person object of "anthony" is found
-            # person.val = num
-            person = get_peep(name)
-            person.val = person.val + str(num)
-            # person.name = person.name + "adsa"
-            # it works but the only issue is that we cant take form input
+            person = get_peep(x)
+            person.val = person.val + num
             db.session.commit()
         except Exception as e:
             print("cant", e)
@@ -72,19 +59,13 @@ def get_peep(name):
 @app.route('/portfolio', methods=["POST", "GET"])
 def portfolio():
     images = os.listdir('static')
-    # name = request.form.get("nam")
-    # person = People.query.filter_by(name=name).first()
-    # person.val = person.val + "jjjeje"
-    # db.session.commit()
     return render_template("prog.html", images=images)
 
 @app.route("/delete", methods=["POST", "GET"])
 def delete():
     name = request.form.get("name")
-    # num = request.form.get("num")
     person = People.query.filter_by(name=name).first()
     db.session.delete(person)
-    # person.val = person.val + num
     db.session.commit()
     return redirect("/")
 
@@ -102,4 +83,4 @@ def home():
     return render_template("home.html", peoples=peoples)
 
 if __name__ == "__main__":
-    app.run(debug = True)
+    app.run(debug = True, threaded=True)
