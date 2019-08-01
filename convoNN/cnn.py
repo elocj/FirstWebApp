@@ -7,7 +7,7 @@ data = np.load('data.npy')
 x_train = data[:450]
 y_train = []
 x_test = data[450:]
-y_test = [1, 0, 0, 0, 1]
+y_test = np.ones(147).astype(int)
 
 conv = Conv3x3(8)
 pool = MaxPool2()
