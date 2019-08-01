@@ -1,0 +1,36 @@
+body, html {
+    height: 100%;
+}
+
+#create {
+    /*background-image: url('../static/img/home.jpg');*/
+    text-align: center;
+    /*height: 100px;*/
+
+    /*!* Center and scale the image nicely *!*/
+    /*background-position: center;*/
+    /*background-repeat: no-repeat;*/
+    /*background-size: cover;*/
+}
+
+#create form {
+    height: 100%;
+}
+
+#create h1 {
+    height: 100%;
+}
+
+.parallax {
+  /* The image used */
+  background-image: url("../static/img/home.jpg");
+
+  /* Full height */
+  height: 100%;
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
