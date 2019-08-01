@@ -34,6 +34,3 @@ for subdir, dirs, files in os.walk(roots):
 data = np.array(data)
 np.save('data', data)
 # Script to turn images into data
-
-pho = np.load('data.npy')
-print(pho)
