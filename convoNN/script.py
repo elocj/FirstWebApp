@@ -22,15 +22,15 @@ import numpy as np
 #             break
 # Script that just takes the first jpeg image out of each file directory
 
-data = []
-roots = '/Users/anthonyjoo/Google Drive/Python/FirstWebApp/static/images'
-for subdir, dirs, files in os.walk(roots):
-    for file in files:
-        img = Image.open(os.path.join('/Users/anthonyjoo/Google Drive/Python/FirstWebApp/static/images', file)).convert('L')
-        WIDTH, HEIGHT = img.size
-        d = list(img.getdata())
-        d = [d[offset: offset + WIDTH] for offset in range(0, WIDTH * HEIGHT, WIDTH)]
-        data.append(d)
-data = np.array(data)
-np.save('data', data)
+# data = []
+# roots = '/Users/anthonyjoo/Google Drive/Python/FirstWebApp/static/images'
+# for subdir, dirs, files in os.walk(roots):
+#     for file in files:
+#         img = Image.open(os.path.join('/Users/anthonyjoo/Google Drive/Python/FirstWebApp/static/images', file)).convert('L')
+#         WIDTH, HEIGHT = img.size
+#         d = list(img.getdata())
+#         d = [d[offset: offset + WIDTH] for offset in range(0, WIDTH * HEIGHT, WIDTH)]
+#         data.append(d)
+# data = np.array(data)
+# np.save('data', data)
 # Script to turn images into data

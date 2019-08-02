@@ -30,7 +30,7 @@ for i, (im, label) in enumerate(zip(x_test, y_test)):
     _, l, acc = forward(im, label)
     loss += l
     num_correct += acc
-    if i % 100 == 99:
-      print('[Step %d] Past 100 steps: Average Loss %.3f | Accuracy: %d%%' % (i + 1, loss / 100, num_correct))
-      loss = 0
-      num_correct = 0
+    # if i % 100 == 99:
+    print('[Step %d] Past 100 steps: Average Loss %.3f | Accuracy: %d%%' % (i + 1, loss / 100, num_correct))
+    loss = 0
+    num_correct = 0
