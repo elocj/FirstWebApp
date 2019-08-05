@@ -76,6 +76,7 @@ def portfolio():
 @app.route("/run", methods = ["GET", "POST"])
 def run():
     person = None
+    num = None
     if request.form:
         try:
             name = request.form.get("name")
@@ -90,6 +91,9 @@ def run():
     # dont forget to db.session.commit()
     # percent = person.perc
     return render_template("action.html", num=num) # can change this to return redirect
+
+# def makeArr(value):
+
 
 # For inputting your own pictures to rate yourself
 # @app.route("/rate", methods = ["GET", "POST"])

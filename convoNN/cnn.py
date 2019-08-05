@@ -24,8 +24,8 @@ y_train = np.zeros(450).astype(int)
 x_test = data[450:]
 y_test = np.zeros(147).astype(int)
 
-x_test = data[5:]
-y_test = np.ones(len(data) - 5).astype(int)
+# x_test = data[5:]
+# y_test = np.ones(len(data) - 5).astype(int)
 
 conv = Conv3x3(8)
 pool = MaxPool2()
