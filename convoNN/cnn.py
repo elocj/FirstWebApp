@@ -3,9 +3,6 @@ from conv import Conv3x3
 from maxpool import MaxPool2
 from softmax import Softmax
 
-# from keras.datasets import fashion_mnist
-# ((trainX, trainY), (testX, testY)) = fashion_mnist.load_data()
-#
 # print(trainY)
 import random
 
@@ -20,7 +17,6 @@ data = np.load('datatemp.npy')
 # x_train = data[:450]
 x_train = data[:450]
 y_train = np.zeros(450).astype(int)
-print(y_train)
 # y_train = []
 # x_test = data[450:]
 # y_test = np.ones(147).astype(int)

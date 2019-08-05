@@ -22,7 +22,7 @@ class People(db.Model):
     name = db.Column(db.String(80), unique = True, nullable = False, primary_key = True)
     val = db.Column(db.String(80), unique = False, nullable = True, primary_key = False)
     weights = db.Column(db.String(80), unique = False, nullable = True, primary_key = False)
-    perc =db.Column(db.String(80), unique = False, nullable = True, primary_key = False)
+    perc = db.Column(db.String(80), unique = False, nullable = True, primary_key = False)
 
     def __repr__(self):
         return "<Name: {}>".format(self.name)
@@ -70,6 +70,9 @@ def portfolio():
 # in the html it will get person.val and run the program. Results appended to person attr.
 # in the future add a column for the weights and percentage swiped right
 # action html should have the result details such as percentage and shit
+
+# GET will receive the name to query and get the value which will then be sent through a python
+# program where it will spit out your weights which you then post to action
 @app.route("/run", methods = ["GET", "POST"])
 def run():
     person = None
@@ -88,6 +91,7 @@ def run():
     # percent = person.perc
     return render_template("action.html", num=num) # can change this to return redirect
 
+# For inputting your own pictures to rate yourself
 # @app.route("/rate", methods = ["GET", "POST"])
 # def rate():
 #     person = None
