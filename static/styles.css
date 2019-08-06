@@ -8,6 +8,18 @@ body, html {
     top: 40%;
 }
 
+#test {
+    text-align: center;
+    position: relative;
+    top: 40%;
+}
+
+#run {
+    text-align: center;
+    position: relative;
+    top: 40%;
+}
+
 .parallax {
     height: 100%;
     background-attachment: fixed;
