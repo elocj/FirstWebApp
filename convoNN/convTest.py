@@ -36,14 +36,14 @@ class Test:
         # return out, loss, acc
 
     def script(self):
-        img = Image.open(os.path.join('/Users/anthonyjoo/Google Drive/Python/FirstWebApp/static/uploadImages', self.x_test)).convert('L')
+        img = Image.open(os.path.join('/Users/anthonyjoo/Google Drive/Python/FirstWebApp/static/uploadImages/', self.x_test)).convert('L')
         new_img = img.resize((96, 96), Image.ANTIALIAS)
         quality_val = 100  # you can vary it considering the tradeoff for quality vs performance
-        new_img.save(os.path.join('/Users/anthonyjoo/Google Drive/Python/FirstWebApp/static/fixUploadImages/', self.x_test), "JPEG", quality=quality_val)
+        new_img.save(os.path.join('/Users/anthonyjoo/Google Drive/Python/FirstWebApp/static/fixedUploadImages/', self.x_test), "JPEG", quality=quality_val)
         # Resize an image
 
         data = []
-        img = Image.open(os.path.join('/Users/anthonyjoo/Google Drive/Python/FirstWebApp/static/fixedUploadImages', self.x_test)).convert('L')
+        img = Image.open(os.path.join('/Users/anthonyjoo/Google Drive/Python/FirstWebApp/static/fixedUploadImages/', self.x_test)).convert('L')
         WIDTH, HEIGHT = img.size
         d = list(img.getdata())
         d = [d[offset: offset + WIDTH] for offset in range(0, WIDTH * HEIGHT, WIDTH)]
@@ -56,7 +56,22 @@ class Test:
         # Test the CNN
         #find way to input the weights
         self.script()
-        self.x_test = np.load('/Users/anthonyjoo/Google Drive/Python/FirstWebApp/convoNN/datatest.npy')
+        self.x_test = np.load('/Users/anthonyjoo/Google Drive/Python/FirstWebApp/datatest.npy')
+        self.x_test = np.squeeze(self.x_test)
         print('\n--- Testing the CNN ---')
+        # stuck here
+        print(self.x_test)
         ans = self.forward(self.x_test)
         return ans
+
+    # print('\n--- Testing the CNN ---')
+    # loss = 0
+    # num_correct = 0
+    # for im, label in zip(self.x_test, self.y_test):
+    #   _, l, acc = self.forward(im, label)
+    #   loss += l
+    #   num_correct += acc
+    #
+    # num_tests = len(self.x_test)
+    # print('Test Loss:', loss / num_tests)
+    # print('Test Accuracy:', num_correct / num_tests)

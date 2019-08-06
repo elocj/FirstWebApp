@@ -91,17 +91,18 @@ def run():
             num = list(map(int, num))
             # pass in person
             person.perc = getPerc(num) / 597
-            person.weights = turnToString(runConv(num)) # cant save array into sqlite db
-            v =person.weights
-            arr = v.split(', ')
-            print(len(arr)) #810883 for wrong one
+            person.weights = turnToString(runConv(num)) # cant save array into sqlite db 35343?
+            #
+            # v = person.weights
+            # arr = v.split(', ')
+            # print(len(arr)) #810883 for wrong one 35343?
             # 17672 for some reason?
             # print(turnToString(person.weights))
             # big issue is that i need to find a way to store weights
             # shape of weights: (17672, 2), 17672 = 47 * 47 * 8, 2 = values for w and b
             # arr = turnToArr(person.weights)
             # arr = np.array(arr)
-            # print(arr)
+            # print(np.shape(arr))
             db.session.commit()
         except Exception as e:
             print("something wrong")
@@ -118,10 +119,47 @@ def getPerc(num):
     return np.count_nonzero(num == 1)
 
 def turnToString(arr):
-    collect = str(arr[0][0]) + ',' + str(arr[0][1])
+    j = 2
+    collect = str(arr[0][0]) + ', ' + str(arr[0][1])
     for i in range(1, 17672):
-        collect += ',' + str(arr[i][0]) + ', ' + str(arr[i][1])
+        collect += ', ' + str(arr[i][0]) + ', ' + str(arr[i][1])
+        j += 2
+    print(j, "hehrhehrehheWTFFFF")
     return collect
+
+# For inputting your own pictures to rate yourself
+@app.route("/rate", methods = ["GET", "POST"])
+def rate():
+    person = None
+    text = None
+    if request.form:
+        try:
+            name = request.form.get("name")
+            person = People.query.filter_by(name=name).first()
+            f = request.files['file']
+            filename = secure_filename(f.filename)
+            f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            arr = turnToArr(person.weights)
+            arr = np.array(arr)
+            # arr = np.astype(np.float)
+            print(arr)
+            arr.astype(np.float)
+            ans = testFace(filename, arr)
+            # filename = secure_filename(file.filename)
+            # file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+            if ans == 1:
+                text = 'you like'
+            else:
+                text = 'you do not like'
+        except Exception as e:
+            print("something wrong")
+            print(e)
+            # your'e gonna print in html if you think they're attractive or not and your percentage
+    return render_template("rate.html", person=person, text = text) # can change this to return redirect
+
+def testFace(filename, weights):
+    return Test(filename, weights).testIt()
 
 def turnToArr(text):
     arr = text.split(', ')
@@ -131,27 +169,6 @@ def turnToArr(text):
         newarr.append([arr[i], arr[i + 1]])
         i += 2
     return newarr
-
-# For inputting your own pictures to rate yourself
-@app.route("/rate", methods = ["GET", "POST"])
-def rate():
-    person = None
-    if request.form:
-        try:
-            name = request.form.get("name")
-            person = People.query.filter_by(name=name).first()
-            f = request.files['file']
-            f.save(secure_filename(f.filename))
-            img = f.filename
-            ans = testFace(img, person)
-        except Exception as e:
-            print("something wrong")
-            print(e)
-            # your'e gonna print in html if you think they're attractive or not and your percentage
-    return render_template("rate.html", person=person) # can change this to return redirect
-
-def testFace(img, person):
-    return Test(img, person.weights)
 
 @app.route("/delete", methods=["POST", "GET"])
 def delete():
