@@ -35,7 +35,7 @@ class Test:
         #
         # return out, loss, acc
 
-    def script(self, x):
+    def script(self):
         img = Image.open(os.path.join('/Users/anthonyjoo/Google Drive/Python/FirstWebApp/static/uploadImages', self.x_test)).convert('L')
         new_img = img.resize((96, 96), Image.ANTIALIAS)
         quality_val = 100  # you can vary it considering the tradeoff for quality vs performance
@@ -55,7 +55,8 @@ class Test:
     def testIt(self):
         # Test the CNN
         #find way to input the weights
-        self.x_test = self.script(self.x_test)
+        self.script()
+        self.x_test = np.load('/Users/anthonyjoo/Google Drive/Python/FirstWebApp/convoNN/datatest.npy')
         print('\n--- Testing the CNN ---')
         ans = self.forward(self.x_test)
         return ans
