@@ -91,7 +91,18 @@ def run():
             num = list(map(int, num))
             # pass in person
             person.perc = getPerc(num) / 597
-            person.weights = runConv(num)
+            person.weights = turnToString(runConv(num)) # cant save array into sqlite db
+            v =person.weights
+            arr = v.split(', ')
+            print(len(arr)) #810883 for wrong one
+            # 17672 for some reason?
+            # print(turnToString(person.weights))
+            # big issue is that i need to find a way to store weights
+            # shape of weights: (17672, 2), 17672 = 47 * 47 * 8, 2 = values for w and b
+            # arr = turnToArr(person.weights)
+            # arr = np.array(arr)
+            # print(arr)
+            db.session.commit()
         except Exception as e:
             print("something wrong")
             print(e)
@@ -105,6 +116,21 @@ def runConv(num):
 
 def getPerc(num):
     return np.count_nonzero(num == 1)
+
+def turnToString(arr):
+    collect = str(arr[0][0]) + ',' + str(arr[0][1])
+    for i in range(1, 17672):
+        collect += ',' + str(arr[i][0]) + ', ' + str(arr[i][1])
+    return collect
+
+def turnToArr(text):
+    arr = text.split(', ')
+    newarr = []
+    i = 0
+    while i < 35344:
+        newarr.append([arr[i], arr[i + 1]])
+        i += 2
+    return newarr
 
 # For inputting your own pictures to rate yourself
 @app.route("/rate", methods = ["GET", "POST"])
@@ -121,6 +147,7 @@ def rate():
         except Exception as e:
             print("something wrong")
             print(e)
+            # your'e gonna print in html if you think they're attractive or not and your percentage
     return render_template("rate.html", person=person) # can change this to return redirect
 
 def testFace(img, person):
@@ -142,7 +169,7 @@ def home():
             db.session.add(people)
             db.session.commit()
         except Exception as e:
-            print("Failed to add book")
+            print("Failed to add people")
             print(e)
     peoples = People.query.all()
     return render_template("home.html", peoples=peoples)
