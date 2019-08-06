@@ -8,31 +8,13 @@ pool = MaxPool2()
 softmax = Softmax(47 * 47 * 8, 2)
 
 class Action:
-  # print(trainY)
-  import random
-
-  # y_train = []
-  # for _ in range(450):
-  #     k = random.randint(0, 1) # decide on a k each time the loop runs
-  #     y_train.append(k)
-
-  # supposed to be one hot key
-  # y_train = np.array(y_train)
   def __init__(self, y_train):
     data = np.load('datatemp.npy')
-    # x_train = data[:450]
     self.x_train = data[:450]
     self.y_train = np.zeros(450).astype(int)
-    # y_train = []
-    # x_test = data[450:]
-    # y_test = np.ones(147).astype(int)
-    #591
     self.x_test = data[450:]
     self.y_test = np.zeros(147).astype(int)
     self.run()
-
-    # x_test = data[5:]
-    # y_test = np.ones(len(data) - 5).astype(int)
 
   def forward(self, image, label):
     '''
