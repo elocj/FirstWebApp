@@ -4,6 +4,8 @@ from flask import Flask
 from flask import render_template
 from flask import request
 from flask import redirect
+from convoNN.cnn import Action
+import numpy as np
 
 from flask_sqlalchemy import SQLAlchemy
 
@@ -84,13 +86,21 @@ def run():
             num = list(person.val)
             num = list(map(int, num))
             # pass in person
+            person.perc = getPerc(num) / 597
+            person.weights = runConv(num)
         except Exception as e:
             print("something wrong")
             print(e)
     # run function after passing in person which will update person
     # dont forget to db.session.commit()
     # percent = person.perc
-    return render_template("action.html", num=num) # can change this to return redirect
+    return render_template("action.html", person=person) # can change this to return redirect
+
+def runConv(num):
+    return Action(num).run()
+
+def getPerc(num):
+    return np.count_nonzero(num == 1)
 
 # def makeArr(value):
 

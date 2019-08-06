@@ -1,7 +1,7 @@
 import numpy as np
-from conv import Conv3x3
-from maxpool import MaxPool2
-from softmax import Softmax
+from convoNN.conv import Conv3x3
+from convoNN.maxpool import MaxPool2
+from convoNN.softmax import Softmax
 
 conv = Conv3x3(8)
 pool = MaxPool2()
@@ -9,12 +9,12 @@ softmax = Softmax(47 * 47 * 8, 2)
 
 class Action:
   def __init__(self, y_train):
-    data = np.load('datatemp.npy')
+    data = np.load('/Users/anthonyjoo/Google Drive/Python/FirstWebApp/convoNN/datatemp.npy')
     self.x_train = data[:450]
     self.y_train = np.zeros(450).astype(int)
     self.x_test = data[450:]
     self.y_test = np.zeros(147).astype(int)
-    self.run()
+    # self.run()
 
   def forward(self, image, label):
     '''
@@ -61,7 +61,7 @@ class Action:
     print('MNIST CNN initialized!')
 
     # Train the CNN for 3 epochs
-    for epoch in range(3):
+    for epoch in range(1):
       print('--- Epoch %d ---' % (epoch + 1))
 
       # Shuffle the training data
@@ -75,6 +75,7 @@ class Action:
       for i, (im, label) in enumerate(zip(self.x_train, self.y_train)):
         if i > 0 and i % 100 == 99:
           print('[Step %d] Past 100 steps: Average Loss %.3f | Accuracy: %d%%' % (i + 1, loss / 100, num_correct))
+          # print(softmax.weights)
           loss = 0
           num_correct = 0
 
@@ -83,14 +84,16 @@ class Action:
         num_correct += acc
 
     # Test the CNN
-    print('\n--- Testing the CNN ---')
-    loss = 0
-    num_correct = 0
-    for im, label in zip(self.x_test, self.y_test):
-      _, l, acc = self.forward(im, label)
-      loss += l
-      num_correct += acc
-
-    num_tests = len(self.x_test)
-    print('Test Loss:', loss / num_tests)
-    print('Test Accuracy:', num_correct / num_tests)
+    # find way to input the weights
+    # print('\n--- Testing the CNN ---')
+    # loss = 0
+    # num_correct = 0
+    # for im, label in zip(self.x_test, self.y_test):
+    #   _, l, acc = self.forward(im, label)
+    #   loss += l
+    #   num_correct += acc
+    #
+    # num_tests = len(self.x_test)
+    # print('Test Loss:', loss / num_tests)
+    # print('Test Accuracy:', num_correct / num_tests)
+    return softmax.weights

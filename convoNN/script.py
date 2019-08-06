@@ -38,11 +38,11 @@ import numpy as np
 
 # from PIL import Image
 
-roots = '/Users/anthonyjoo/Google Drive/Python/FirstWebApp/static/images'
-for subdir, dirs, files in os.walk(roots):
-    for file in files:
-        img = Image.open(os.path.join('/Users/anthonyjoo/Google Drive/Python/FirstWebApp/static/images', file)).convert('L')
-        new_img = img.resize((96, 96), Image.ANTIALIAS)
-        quality_val = 100  # you can vary it considering the tradeoff for quality vs performance
-        new_img.save(os.path.join('/Users/anthonyjoo/Google Drive/Python/FirstWebApp/static/downImages/', file), "JPEG", quality=quality_val)
+# roots = '/Users/anthonyjoo/Google Drive/Python/FirstWebApp/static/images'
+# for subdir, dirs, files in os.walk(roots):
+#     for file in files:
+#         img = Image.open(os.path.join('/Users/anthonyjoo/Google Drive/Python/FirstWebApp/static/images', file)).convert('L')
+#         new_img = img.resize((96, 96), Image.ANTIALIAS)
+#         quality_val = 100  # you can vary it considering the tradeoff for quality vs performance
+#         new_img.save(os.path.join('/Users/anthonyjoo/Google Drive/Python/FirstWebApp/static/downImages/', file), "JPEG", quality=quality_val)
 # Resize an image
