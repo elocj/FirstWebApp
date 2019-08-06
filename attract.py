@@ -7,16 +7,19 @@ from flask import redirect
 from convoNN.cnn import Action
 from convoNN.convTest import Test
 import numpy as np
+from werkzeug import secure_filename
 
 from flask_sqlalchemy import SQLAlchemy
 
 
 project_dir = os.path.dirname(os.path.abspath(__file__))
 database_file = "sqlite:///{}".format(os.path.join(project_dir, "peopledatabase.db"))
+UPLOAD_FOLDER = '/Users/anthonyjoo/Google Drive/Python/FirstWebApp/static/uploadImages'
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = database_file
 app.config["SQLALCHEMY_TRACK_MODIFICATION"] = False
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 x = "global"
 
 db = SQLAlchemy(app)
@@ -111,7 +114,9 @@ def rate():
         try:
             name = request.form.get("name")
             person = People.query.filter_by(name=name).first()
-            img = 0 #placehodler
+            f = request.files['file']
+            f.save(secure_filename(f.filename))
+            img = f.filename
             ans = testFace(img, person)
         except Exception as e:
             print("something wrong")

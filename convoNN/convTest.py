@@ -2,6 +2,8 @@ import numpy as np
 from convoNN.conv import Conv3x3
 from convoNN.maxpool import MaxPool2
 from convoNN.softmax import Softmax
+import os
+from PIL import Image
 
 conv = Conv3x3(8)
 pool = MaxPool2()
@@ -33,9 +35,27 @@ class Test:
         #
         # return out, loss, acc
 
+    def script(self, x):
+        img = Image.open(os.path.join('/Users/anthonyjoo/Google Drive/Python/FirstWebApp/static/uploadImages', self.x_test)).convert('L')
+        new_img = img.resize((96, 96), Image.ANTIALIAS)
+        quality_val = 100  # you can vary it considering the tradeoff for quality vs performance
+        new_img.save(os.path.join('/Users/anthonyjoo/Google Drive/Python/FirstWebApp/static/fixUploadImages/', self.x_test), "JPEG", quality=quality_val)
+        # Resize an image
+
+        data = []
+        img = Image.open(os.path.join('/Users/anthonyjoo/Google Drive/Python/FirstWebApp/static/fixedUploadImages', self.x_test)).convert('L')
+        WIDTH, HEIGHT = img.size
+        d = list(img.getdata())
+        d = [d[offset: offset + WIDTH] for offset in range(0, WIDTH * HEIGHT, WIDTH)]
+        data.append(d)
+        data = np.array(data)
+        np.save('datatest', data)
+        # Script to turn images into data
+
     def testIt(self):
         # Test the CNN
         #find way to input the weights
+        self.x_test = self.script(self.x_test)
         print('\n--- Testing the CNN ---')
         ans = self.forward(self.x_test)
         return ans

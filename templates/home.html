@@ -60,8 +60,9 @@
         <div class = "parallax">
             <div id = "test">
                 <h1>Test face</h1>
-                    <form method = "POST" action = "./rate">
+                    <form method = "POST" action = "./rate" enctype = "multipart/form-data">
                         <input type = "text" name = "name">
+                        <input type = "file" name = "file" />
                         <input type = "submit" value = "Submit">
                     </form>
             </div>
