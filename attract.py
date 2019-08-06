@@ -144,6 +144,7 @@ def rate():
             # arr = np.astype(np.float)
             print(arr)
             arr.astype(np.float)
+            #got in here
             ans = testFace(filename, arr)
             # filename = secure_filename(file.filename)
             # file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))

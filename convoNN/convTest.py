@@ -61,7 +61,8 @@ class Test:
         print('\n--- Testing the CNN ---')
         # stuck here
         print(self.x_test)
-        ans = self.forward(self.x_test)
+        # got past here
+        ans = self.forward(self.x_test) #stuck here
         return ans
 
     # print('\n--- Testing the CNN ---')
