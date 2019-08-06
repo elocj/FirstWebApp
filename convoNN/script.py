@@ -22,27 +22,27 @@ import numpy as np
 #             break
 # Script that just takes the first jpeg image out of each file directory
 
-data = []
-roots = '/Users/anthonyjoo/Google Drive/Python/FirstWebApp/static/newimg'
-for subdir, dirs, files in os.walk(roots):
-    for file in files:
-        img = Image.open(os.path.join('/Users/anthonyjoo/Google Drive/Python/FirstWebApp/static/newimg', file)).convert('L')
-        WIDTH, HEIGHT = img.size
-        d = list(img.getdata())
-        d = [d[offset: offset + WIDTH] for offset in range(0, WIDTH * HEIGHT, WIDTH)]
-        data.append(d)
-data = np.array(data)
-np.save('datatemp', data)
+# data = []
+# roots = '/Users/anthonyjoo/Google Drive/Python/FirstWebApp/static/newimg'
+# for subdir, dirs, files in os.walk(roots):
+#     for file in files:
+#         img = Image.open(os.path.join('/Users/anthonyjoo/Google Drive/Python/FirstWebApp/static/newimg', file)).convert('L')
+#         WIDTH, HEIGHT = img.size
+#         d = list(img.getdata())
+#         d = [d[offset: offset + WIDTH] for offset in range(0, WIDTH * HEIGHT, WIDTH)]
+#         data.append(d)
+# data = np.array(data)
+# np.save('datatemp', data)
 # print(data)
 # Script to turn images into data
 
 # from PIL import Image
 
-# roots = '/Users/anthonyjoo/Google Drive/Python/FirstWebApp/static/ldsdl'
-# for subdir, dirs, files in os.walk(roots):
-#     for file in files:
-#         img = Image.open(os.path.join('/Users/anthonyjoo/Google Drive/Python/FirstWebApp/static/ldsdl', file)).convert('L')
-#         new_img = img.resize((96, 96), Image.ANTIALIAS)
-#         quality_val = 100  ##you can vary it considering the tradeoff for quality vs performance
-#         new_img.save(os.path.join('/Users/anthonyjoo/Google Drive/Python/FirstWebApp/static/newimg/', file), "JPEG", quality=quality_val)
+roots = '/Users/anthonyjoo/Google Drive/Python/FirstWebApp/static/images'
+for subdir, dirs, files in os.walk(roots):
+    for file in files:
+        img = Image.open(os.path.join('/Users/anthonyjoo/Google Drive/Python/FirstWebApp/static/images', file)).convert('L')
+        new_img = img.resize((96, 96), Image.ANTIALIAS)
+        quality_val = 100  # you can vary it considering the tradeoff for quality vs performance
+        new_img.save(os.path.join('/Users/anthonyjoo/Google Drive/Python/FirstWebApp/static/downImages/', file), "JPEG", quality=quality_val)
 # Resize an image
