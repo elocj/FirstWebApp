@@ -5,6 +5,7 @@ from flask import render_template
 from flask import request
 from flask import redirect
 from convoNN.cnn import Action
+from convoNN.convTest import Test
 import numpy as np
 
 from flask_sqlalchemy import SQLAlchemy
@@ -102,21 +103,23 @@ def runConv(num):
 def getPerc(num):
     return np.count_nonzero(num == 1)
 
-# def makeArr(value):
-
-
 # For inputting your own pictures to rate yourself
-# @app.route("/rate", methods = ["GET", "POST"])
-# def rate():
-#     person = None
-#     if request.form:
-#         try:
-#             name = request.form.get("name")
-#             person = People.query.filter_by(name=name).first()
-#         except Exception as e:
-#             print("something wrong")
-#             print(e)
-#     return render_template("rate.html", person=person) # can change this to return redirect
+@app.route("/rate", methods = ["GET", "POST"])
+def rate():
+    person = None
+    if request.form:
+        try:
+            name = request.form.get("name")
+            person = People.query.filter_by(name=name).first()
+            img = 0 #placehodler
+            ans = testFace(img, person)
+        except Exception as e:
+            print("something wrong")
+            print(e)
+    return render_template("rate.html", person=person) # can change this to return redirect
+
+def testFace(img, person):
+    return Test(img, person.weights)
 
 @app.route("/delete", methods=["POST", "GET"])
 def delete():
