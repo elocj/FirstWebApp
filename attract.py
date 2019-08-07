@@ -89,27 +89,12 @@ def run():
             person = get_peep(name)
             num = list(person.val)
             num = list(map(int, num))
-            # pass in person
             person.perc = getPerc(num) / 597
-            person.weights = turnToString(runConv(num)) # cant save array into sqlite db 35343?
-            #
-            # v = person.weights
-            # arr = v.split(', ')
-            # print(len(arr)) #810883 for wrong one 35343?
-            # 17672 for some reason?
-            # print(turnToString(person.weights))
-            # big issue is that i need to find a way to store weights
-            # shape of weights: (17672, 2), 17672 = 47 * 47 * 8, 2 = values for w and b
-            # arr = turnToArr(person.weights)
-            # arr = np.array(arr)
-            # print(np.shape(arr))
+            person.weights = turnToString(runConv(num))
             db.session.commit()
         except Exception as e:
             print("something wrong")
             print(e)
-    # run function after passing in person which will update person
-    # dont forget to db.session.commit()
-    # percent = person.perc
     return render_template("action.html", person=person) # can change this to return redirect
 
 def runConv(num):
@@ -141,13 +126,8 @@ def rate():
             f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             arr = turnToArr(person.weights)
             arr = np.array(arr)
-            # arr = np.astype(np.float)
             arr = arr.astype(np.float)
-            print(arr)
-            #got in here
             ans = testFace(filename, arr)
-            # filename = secure_filename(file.filename)
-            # file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
             if ans == 1:
                 text = 'you like'
@@ -156,8 +136,7 @@ def rate():
         except Exception as e:
             print("something wrong")
             print(e)
-            # your'e gonna print in html if you think they're attractive or not and your percentage
-    return render_template("rate.html", person=person, text = text) # can change this to return redirect
+    return render_template("rate.html", person=person, text = text)
 
 def testFace(filename, weights):
     return Test(filename, weights).testIt()

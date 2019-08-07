@@ -82,18 +82,4 @@ class Action:
         l, acc = self.train(im, label)
         loss += l
         num_correct += acc
-
-    # Test the CNN
-    # find way to input the weights
-    # print('\n--- Testing the CNN ---')
-    # loss = 0
-    # num_correct = 0
-    # for im, label in zip(self.x_test, self.y_test):
-    #   _, l, acc = self.forward(im, label)
-    #   loss += l
-    #   num_correct += acc
-    #
-    # num_tests = len(self.x_test)
-    # print('Test Loss:', loss / num_tests)
-    # print('Test Accuracy:', num_correct / num_tests)
     return softmax.weights

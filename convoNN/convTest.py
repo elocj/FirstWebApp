@@ -28,12 +28,9 @@ class Test:
         out = conv.forward((image / 255) - 0.5)
         out = pool.forward(out)
         softmax.weights = self.weights
-        out = softmax.forward(out) # its in there hoe
+        out = softmax.forward(out)
 
         return np.argmax(out)
-        # acc = 1 if np.argmax(out) == label else 0
-        #
-        # return out, loss, acc
 
     def script(self):
         img = Image.open(os.path.join('/Users/anthonyjoo/Google Drive/Python/FirstWebApp/static/uploadImages/', self.x_test)).convert('L')
@@ -54,7 +51,6 @@ class Test:
 
     def testIt(self):
         # Test the CNN
-        #find way to input the weights
         self.script()
         self.x_test = np.load('/Users/anthonyjoo/Google Drive/Python/FirstWebApp/datatest.npy')
         self.x_test = np.squeeze(self.x_test)
@@ -64,15 +60,3 @@ class Test:
         # got past here
         ans = self.forward(self.x_test) #stuck here
         return ans
-
-    # print('\n--- Testing the CNN ---')
-    # loss = 0
-    # num_correct = 0
-    # for im, label in zip(self.x_test, self.y_test):
-    #   _, l, acc = self.forward(im, label)
-    #   loss += l
-    #   num_correct += acc
-    #
-    # num_tests = len(self.x_test)
-    # print('Test Loss:', loss / num_tests)
-    # print('Test Accuracy:', num_correct / num_tests)
