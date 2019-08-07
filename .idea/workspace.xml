@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9d164cc4-62eb-41b4-b5e6-d6c0dd2b779e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/attract.py" beforeDir="false" afterPath="$PROJECT_DIR$/attract.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/convoNN/cnn.py" beforeDir="false" afterPath="$PROJECT_DIR$/convoNN/cnn.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/convoNN/maxpool.py" beforeDir="false" afterPath="$PROJECT_DIR$/convoNN/maxpool.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home.html" afterDir="false" />
-    </list>
+    <list default="true" id="9d164cc4-62eb-41b4-b5e6-d6c0dd2b779e" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/venv/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -260,12 +253,12 @@
       <workItem from="1565049984290" duration="119000" />
       <workItem from="1565108266724" duration="24480000" />
       <workItem from="1565150923454" duration="785000" />
-      <workItem from="1565195017120" duration="271000" />
+      <workItem from="1565195017120" duration="332000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="75156000" />
+    <option name="totallyTimeSpent" value="75217000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
