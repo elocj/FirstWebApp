@@ -39,5 +39,4 @@ class MaxPool2:
                         # If this pixel was the max value, copy the gradient to it.
                         if im_region[i2, j2, f2] == amax[f2]:
                             d_L_d_input[i * 2 + i2, j * 2 + j2, f2] = d_L_d_out[i, j, f2]
-
         return d_L_d_input

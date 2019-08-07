@@ -12,6 +12,8 @@ class Action:
     data = np.load('/Users/anthonyjoo/Google Drive/Python/FirstWebApp/convoNN/datatemp.npy')
     self.x_train = data[:450]
     self.y_train = np.zeros(450).astype(int)
+    # For when you're ready do
+    # self.y_train = y_train
     self.x_test = data[450:]
     self.y_test = np.zeros(147).astype(int)
     # self.run()

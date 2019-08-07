@@ -130,9 +130,9 @@ def rate():
             ans = testFace(filename, arr)
 
             if ans == 1:
-                text = 'you like'
+                text = 'trustworthy'
             else:
-                text = 'you do not like'
+                text = 'not trustworthy'
         except Exception as e:
             print("something wrong")
             print(e)
