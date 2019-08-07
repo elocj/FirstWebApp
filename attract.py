@@ -142,8 +142,8 @@ def rate():
             arr = turnToArr(person.weights)
             arr = np.array(arr)
             # arr = np.astype(np.float)
+            arr = arr.astype(np.float)
             print(arr)
-            arr.astype(np.float)
             #got in here
             ans = testFace(filename, arr)
             # filename = secure_filename(file.filename)

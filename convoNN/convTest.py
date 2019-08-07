@@ -28,7 +28,7 @@ class Test:
         out = conv.forward((image / 255) - 0.5)
         out = pool.forward(out)
         softmax.weights = self.weights
-        out = softmax.forward(out)
+        out = softmax.forward(out) # its in there hoe
 
         return np.argmax(out)
         # acc = 1 if np.argmax(out) == label else 0
@@ -60,7 +60,7 @@ class Test:
         self.x_test = np.squeeze(self.x_test)
         print('\n--- Testing the CNN ---')
         # stuck here
-        print(self.x_test)
+        # print(self.x_test)
         # got past here
         ans = self.forward(self.x_test) #stuck here
         return ans

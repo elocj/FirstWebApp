@@ -5,13 +5,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/attract.py" beforeDir="false" afterPath="$PROJECT_DIR$/attract.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/convoNN/convTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/convoNN/convTest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/peopledatabase.db" beforeDir="false" afterPath="$PROJECT_DIR$/peopledatabase.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/rate.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/rate.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/bin/f2py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/bin/f2py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/bin/f2py3" beforeDir="false" afterPath="$PROJECT_DIR$/venv/bin/f2py3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/bin/f2py3.6" beforeDir="false" afterPath="$PROJECT_DIR$/venv/bin/f2py3.6" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy-1.17.0.dist-info/RECORD" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy-1.17.0.dist-info/RECORD" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/pip-selfcheck.json" beforeDir="false" afterPath="$PROJECT_DIR$/venv/pip-selfcheck.json" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/venv/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -39,8 +32,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/attract.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
-              <caret line="124" column="64" selection-start-line="124" selection-start-column="64" selection-end-line="124" selection-end-column="64" />
+            <state relative-caret-position="216">
+              <caret line="145" column="22" selection-start-line="145" selection-start-column="22" selection-end-line="145" selection-end-column="22" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -107,8 +100,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/convoNN/convTest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="64" column="18" selection-start-line="64" selection-start-column="18" selection-end-line="64" selection-end-column="18" />
+            <state relative-caret-position="361">
+              <caret line="31" selection-start-line="31" selection-end-line="31" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -128,7 +121,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/convoNN/softmax.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-556">
+            <state>
               <caret column="18" selection-start-column="18" selection-end-column="18" />
             </state>
           </provider>
@@ -254,12 +247,12 @@
       <workItem from="1564474432718" duration="40396000" />
       <workItem from="1565036353352" duration="8332000" />
       <workItem from="1565049984290" duration="119000" />
-      <workItem from="1565108266724" duration="22057000" />
+      <workItem from="1565108266724" duration="23663000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="71677000" />
+    <option name="totallyTimeSpent" value="73283000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -358,13 +351,6 @@
     <entry file="file://$PROJECT_DIR$/convoNN/maxpool.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/convoNN/softmax.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-556">
-          <caret column="18" selection-start-column="18" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/styles.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-360">
@@ -408,16 +394,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/convoNN/convTest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="64" column="18" selection-start-line="64" selection-start-column="18" selection-end-line="64" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/convoNN/cnn.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -428,10 +404,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/convoNN/softmax.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="18" selection-start-column="18" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/convoNN/convTest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="31" selection-start-line="31" selection-end-line="31" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/attract.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="124" column="64" selection-start-line="124" selection-start-column="64" selection-end-line="124" selection-end-column="64" />
+        <state relative-caret-position="216">
+          <caret line="145" column="22" selection-start-line="145" selection-start-column="22" selection-end-line="145" selection-end-column="22" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
