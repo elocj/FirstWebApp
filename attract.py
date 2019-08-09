@@ -169,7 +169,7 @@ def home():
             print("Failed to add people")
             print(e)
     peoples = People.query.all()
-    return render_template("index.html", peoples=peoples)
+    return render_template("home.html", peoples=peoples)
 
 if __name__ == "__main__":
     app.run(debug = True)
