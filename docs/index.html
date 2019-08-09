@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="../static/styles.css">
+        <!--<meta charset="UTF-8">-->
+    </head>
+    <body>
+        <div class="parallax" style = "background-image: url('../static/img/home.jpg');">
+        <div id = "create">
+            <h1>Make account</h1>
+                <form method = "POST" action = "/">
+                    <input type = "text" name = "name">
+                    <input type = "text" name = "val">
+                    <input type = "submit" value = "Add">
+                </form>
+        </div>
+        </div>
+
+        <div class="parallax" style = "background-image: url('../static/img/nat.jpg');">
+            <div id="row">
+                <div class = "column">
+                    <div id = "modify">
+                        <h1>Modify account</h1>
+                            <form method = "POST" action = "./portfolio/update">
+                                <input type = "text" name = "name">
+                                <input type = "submit" value = "Continue">
+                            </form>
+                    </div>
+                </div>
+
+                <div class = "column">
+                    <div id = "accounts">
+                        <div class = "column">
+                        <h1>Accounts</h1>
+                            {% for person in peoples %}
+                                <h4 style="display: inline">{{person.name}}</h4>
+                                <!--<p style="display: inline">{{person.val}}</p>-->
+                                <form method="POST" action="./delete" style="display: inline">
+                                    <input type="hidden" value="{{person.name}}" name="name">
+                                    <input type="submit" value="Delete">
+                                </form>
+                                <p></p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="parallax" style = "background-image: url('../static/img/moon.jpg');">
+            <div id = "run">
+            <h1>Run program</h1>
+                <form method = "POST" action = "./run">
+                    <input type = "text" name = "name">
+                    <input type = "submit" value = "Submit">
+                </form>
+            </div>
+        </div>
+
+        <div class = "parallax" style = "background-image: url('../static/img/bridge.jpg');">
+            <div id = "test">
+                <h1>Test face</h1>
+                    <form method = "POST" action = "./rate" enctype = "multipart/form-data">
+                        <input type = "text" name = "name">
+                        <input type = "file" name = "file" style = "color: #ffffff">
+                        <input type = "submit" value = "Submit">
+                    </form>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,5 @@
+convoNN/data.npy
+convoNN/datatemp.npy
+static/images
+static/downImages
+.idea/workspace.xml
