@@ -12,7 +12,7 @@ Flask-Testing==0.7.1
 idna==2.8
 itsdangerous==1.1.0
 Jinja2==2.10.1
-Mako==1.0.14
+Mako==1.2.2
 MarkupSafe==1.1.1
 numpy==1.17.0
 Pillow==6.1.0
